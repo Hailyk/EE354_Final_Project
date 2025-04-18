@@ -1,0 +1,377 @@
+#-----------------------------------------------------------
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Fri Apr 18 00:40:15 2025
+# Process ID         : 16520
+# Current directory  : C:/Xilinx_project/tictactoe/tictactoe.runs/synth_1
+# Command line       : vivado.exe -log tictactoe_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source tictactoe_top.tcl
+# Log file           : C:/Xilinx_project/tictactoe/tictactoe.runs/synth_1/tictactoe_top.vds
+# Journal file       : C:/Xilinx_project/tictactoe/tictactoe.runs/synth_1\vivado.jou
+# Running On         : buscits
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26100
+# Processor Detail   : 12th Gen Intel(R) Core(TM) i5-1240P
+# CPU Frequency      : 2112 MHz
+# CPU Physical cores : 12
+# CPU Logical cores  : 16
+# Host memory        : 34054 MB
+# Swap memory        : 2147 MB
+# Total Virtual      : 36201 MB
+# Available Virtual  : 29015 MB
+#-----------------------------------------------------------
+source tictactoe_top.tcl -notrace
+Command: read_checkpoint -auto_incremental -incremental C:/Xilinx_project/tictactoe/tictactoe.srcs/utils_1/imports/synth_1/tictactoe_top.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Xilinx_project/tictactoe/tictactoe.srcs/utils_1/imports/synth_1/tictactoe_top.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top tictactoe_top -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 11336
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1020.242 ; gain = 468.828
+---------------------------------------------------------------------------------
+INFO: [Synth 8-11241] undeclared symbol 'board_outline', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:81]
+INFO: [Synth 8-11241] undeclared symbol 'logic_clk', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:104]
+INFO: [Synth 8-11241] undeclared symbol 'board_line', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:234]
+INFO: [Synth 8-11241] undeclared symbol 'board_v_line_1', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:240]
+INFO: [Synth 8-11241] undeclared symbol 'board_v_line_2', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:242]
+INFO: [Synth 8-11241] undeclared symbol 'board_h_line_1', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:244]
+INFO: [Synth 8-11241] undeclared symbol 'board_h_line_2', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:246]
+INFO: [Synth 8-11241] undeclared symbol 'board_cell_background_0_0', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:250]
+INFO: [Synth 8-11241] undeclared symbol 'board_cell_background_1_0', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:252]
+INFO: [Synth 8-11241] undeclared symbol 'board_cell_background_2_0', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:254]
+INFO: [Synth 8-11241] undeclared symbol 'board_cell_background_0_1', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:258]
+INFO: [Synth 8-11241] undeclared symbol 'board_cell_background_1_1', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:260]
+INFO: [Synth 8-11241] undeclared symbol 'board_cell_background_2_1', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:262]
+INFO: [Synth 8-11241] undeclared symbol 'board_cell_background_0_2', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:266]
+INFO: [Synth 8-11241] undeclared symbol 'board_cell_background_1_2', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:268]
+INFO: [Synth 8-11241] undeclared symbol 'board_cell_background_2_2', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:270]
+INFO: [Synth 8-11241] undeclared symbol 'cell_0_0', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:275]
+INFO: [Synth 8-11241] undeclared symbol 'cell_1_0', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:279]
+INFO: [Synth 8-11241] undeclared symbol 'cell_2_0', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:283]
+INFO: [Synth 8-11241] undeclared symbol 'cell_0_1', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:289]
+INFO: [Synth 8-11241] undeclared symbol 'cell_1_1', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:293]
+INFO: [Synth 8-11241] undeclared symbol 'cell_2_1', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:297]
+INFO: [Synth 8-11241] undeclared symbol 'cell_0_2', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:303]
+INFO: [Synth 8-11241] undeclared symbol 'cell_1_2', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:307]
+INFO: [Synth 8-11241] undeclared symbol 'cell_2_2', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:311]
+INFO: [Synth 8-11241] undeclared symbol 'playerA_win', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:342]
+INFO: [Synth 8-11241] undeclared symbol 'playerB_win', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:343]
+INFO: [Synth 8-11241] undeclared symbol 'board_full', assumed default net type 'wire' [C:/Xilinx_project/tictactoe/src/board_controller.v:344]
+WARNING: [Synth 8-6901] identifier 'IMG_width' is used before its declaration [C:/Xilinx_project/tictactoe/src/board_controller.v:34]
+WARNING: [Synth 8-6901] identifier 'x_blank' is used before its declaration [C:/Xilinx_project/tictactoe/src/board_controller.v:34]
+WARNING: [Synth 8-6901] identifier 'IMG_height' is used before its declaration [C:/Xilinx_project/tictactoe/src/board_controller.v:35]
+WARNING: [Synth 8-6901] identifier 'y_blank' is used before its declaration [C:/Xilinx_project/tictactoe/src/board_controller.v:35]
+INFO: [Synth 8-6157] synthesizing module 'tictactoe_top' [C:/Xilinx_project/tictactoe/src/tictactoe_top.v:3]
+INFO: [Synth 8-6157] synthesizing module 'debouncer' [C:/Xilinx_project/tictactoe/src/debounce_DPB_SCEN_CCEN_MCEN.v:92]
+	Parameter N_dc bound to: 7 - type: integer 
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Xilinx_project/tictactoe/src/debounce_DPB_SCEN_CCEN_MCEN.v:148]
+INFO: [Synth 8-6155] done synthesizing module 'debouncer' (0#1) [C:/Xilinx_project/tictactoe/src/debounce_DPB_SCEN_CCEN_MCEN.v:92]
+INFO: [Synth 8-6157] synthesizing module 'display_controller' [C:/Xilinx_project/tictactoe/src/display_controller.v:24]
+INFO: [Synth 8-6155] done synthesizing module 'display_controller' (0#1) [C:/Xilinx_project/tictactoe/src/display_controller.v:24]
+INFO: [Synth 8-6157] synthesizing module 'board_controller' [C:/Xilinx_project/tictactoe/src/board_controller.v:3]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_blue' [C:/Xilinx_project/tictactoe/tictactoe.runs/synth_1/.Xil/Vivado-16520-buscits/realtime/blk_mem_gen_blue_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_blue' (0#1) [C:/Xilinx_project/tictactoe/tictactoe.runs/synth_1/.Xil/Vivado-16520-buscits/realtime/blk_mem_gen_blue_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_red' [C:/Xilinx_project/tictactoe/tictactoe.runs/synth_1/.Xil/Vivado-16520-buscits/realtime/blk_mem_gen_red_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_red' (0#1) [C:/Xilinx_project/tictactoe/tictactoe.runs/synth_1/.Xil/Vivado-16520-buscits/realtime/blk_mem_gen_red_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_tie' [C:/Xilinx_project/tictactoe/tictactoe.runs/synth_1/.Xil/Vivado-16520-buscits/realtime/blk_mem_gen_tie_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_tie' (0#1) [C:/Xilinx_project/tictactoe/tictactoe.runs/synth_1/.Xil/Vivado-16520-buscits/realtime/blk_mem_gen_tie_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'board_controller' (0#1) [C:/Xilinx_project/tictactoe/src/board_controller.v:3]
+INFO: [Synth 8-226] default block is never used [C:/Xilinx_project/tictactoe/src/tictactoe_top.v:166]
+INFO: [Synth 8-6155] done synthesizing module 'tictactoe_top' (0#1) [C:/Xilinx_project/tictactoe/src/tictactoe_top.v:3]
+WARNING: [Synth 8-3848] Net background in module/entity board_controller does not have driver. [C:/Xilinx_project/tictactoe/src/board_controller.v:10]
+WARNING: [Synth 8-3917] design tictactoe_top has port QuadSpiFlashCS driven by constant 1
+WARNING: [Synth 8-7129] Port background[11] in module board_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port background[10] in module board_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port background[9] in module board_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port background[8] in module board_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port background[7] in module board_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port background[6] in module board_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port background[5] in module board_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port background[4] in module board_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port background[3] in module board_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port background[2] in module board_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port background[1] in module board_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port background[0] in module board_controller is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1138.305 ; gain = 586.891
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1138.305 ; gain = 586.891
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1138.305 ; gain = 586.891
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1138.305 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [c:/Xilinx_project/tictactoe/tictactoe.gen/sources_1/ip/blk_mem_gen_blue/blk_mem_gen_blue/blk_mem_gen_blue_in_context.xdc] for cell 'bc/blue_bram_inst'
+Finished Parsing XDC File [c:/Xilinx_project/tictactoe/tictactoe.gen/sources_1/ip/blk_mem_gen_blue/blk_mem_gen_blue/blk_mem_gen_blue_in_context.xdc] for cell 'bc/blue_bram_inst'
+Parsing XDC File [c:/Xilinx_project/tictactoe/tictactoe.gen/sources_1/ip/blk_mem_gen_tie/blk_mem_gen_tie/blk_mem_gen_tie_in_context.xdc] for cell 'bc/tie_bram_inst'
+Finished Parsing XDC File [c:/Xilinx_project/tictactoe/tictactoe.gen/sources_1/ip/blk_mem_gen_tie/blk_mem_gen_tie/blk_mem_gen_tie_in_context.xdc] for cell 'bc/tie_bram_inst'
+Parsing XDC File [c:/Xilinx_project/tictactoe/tictactoe.gen/sources_1/ip/blk_mem_gen_red/blk_mem_gen_red/blk_mem_gen_red_in_context.xdc] for cell 'bc/red_bram_inst'
+Finished Parsing XDC File [c:/Xilinx_project/tictactoe/tictactoe.gen/sources_1/ip/blk_mem_gen_red/blk_mem_gen_red/blk_mem_gen_red_in_context.xdc] for cell 'bc/red_bram_inst'
+Parsing XDC File [C:/Xilinx_project/tictactoe/src/nexys7.xdc]
+WARNING: [Vivado 12-584] No ports matched 'RamCS'. [C:/Xilinx_project/tictactoe/src/nexys7.xdc:116]
+WARNING: [Vivado 12-584] No ports matched 'RamCS'. [C:/Xilinx_project/tictactoe/src/nexys7.xdc:117]
+WARNING: [Vivado 12-584] No ports matched 'MemOE'. [C:/Xilinx_project/tictactoe/src/nexys7.xdc:119]
+WARNING: [Vivado 12-584] No ports matched 'MemOE'. [C:/Xilinx_project/tictactoe/src/nexys7.xdc:120]
+WARNING: [Vivado 12-584] No ports matched 'MemWR'. [C:/Xilinx_project/tictactoe/src/nexys7.xdc:122]
+WARNING: [Vivado 12-584] No ports matched 'MemWR'. [C:/Xilinx_project/tictactoe/src/nexys7.xdc:123]
+Finished Parsing XDC File [C:/Xilinx_project/tictactoe/src/nexys7.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [C:/Xilinx_project/tictactoe/src/nexys7.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/tictactoe_top_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Xilinx_project/tictactoe/src/nexys7.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/tictactoe_top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/tictactoe_top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1225.223 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1225.223 ; gain = 0.000
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'bc/blue_bram_inst' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'bc/red_bram_inst' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'bc/tie_bram_inst' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1225.383 ; gain = 673.969
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1225.383 ; gain = 673.969
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for bc/blue_bram_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for bc/tie_bram_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for bc/red_bram_inst. (constraint file  auto generated constraint).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1225.383 ; gain = 673.969
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'debouncer'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                     INI |                             0000 |                           000000
+                     W84 |                             0001 |                           000001
+                 SCEN_st |                             0010 |                           111100
+                      WS |                             0011 |                           100000
+                 MCEN_st |                             0100 |                           101100
+                 CCEN_st |                             0101 |                           100100
+               MCEN_cont |                             0110 |                           101101
+                     CCR |                             0111 |                           100001
+                    WFCR |                             1000 |                           100010
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'debouncer'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1225.383 ; gain = 673.969
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   12 Bit       Adders := 1     
+	   2 Input   10 Bit       Adders := 2     
+	   2 Input    9 Bit       Adders := 2     
+	   2 Input    7 Bit       Adders := 5     
+	   2 Input    4 Bit       Adders := 6     
+	   2 Input    2 Bit       Adders := 2     
++---Registers : 
+	               12 Bit    Registers := 1     
+	               10 Bit    Registers := 2     
+	                9 Bit    Registers := 3     
+	                7 Bit    Registers := 5     
+	                4 Bit    Registers := 6     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 5     
++---Muxes : 
+	   2 Input   12 Bit        Muxes := 9     
+	   3 Input   12 Bit        Muxes := 8     
+	   4 Input   12 Bit        Muxes := 1     
+	   2 Input    9 Bit        Muxes := 16    
+	   5 Input    9 Bit        Muxes := 3     
+	   9 Input    7 Bit        Muxes := 5     
+	   9 Input    6 Bit        Muxes := 5     
+	   9 Input    4 Bit        Muxes := 10    
+	   2 Input    4 Bit        Muxes := 25    
+	   3 Input    4 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 21    
+	   9 Input    1 Bit        Muxes := 15    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-3917] design tictactoe_top has port QuadSpiFlashCS driven by constant 1
+WARNING: [Synth 8-7129] Port background[11] in module board_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port background[10] in module board_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port background[9] in module board_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port background[8] in module board_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port background[7] in module board_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port background[6] in module board_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port background[5] in module board_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port background[4] in module board_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port background[3] in module board_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port background[2] in module board_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port background[1] in module board_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port background[0] in module board_controller is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1225.383 ; gain = 673.969
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 1319.723 ; gain = 768.309
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1381.277 ; gain = 829.863
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1390.336 ; gain = 838.922
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1564.980 ; gain = 1013.566
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1564.980 ; gain = 1013.566
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1564.980 ; gain = 1013.566
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1564.980 ; gain = 1013.566
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1564.980 ; gain = 1013.566
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1564.980 ; gain = 1013.566
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+-----------------+----------+
+|      |BlackBox name    |Instances |
++------+-----------------+----------+
+|1     |blk_mem_gen_blue |         1|
+|2     |blk_mem_gen_red  |         1|
+|3     |blk_mem_gen_tie  |         1|
++------+-----------------+----------+
+
+Report Cell Usage: 
++------+-----------------+------+
+|      |Cell             |Count |
++------+-----------------+------+
+|1     |blk_mem_gen_blue |     1|
+|2     |blk_mem_gen_red  |     1|
+|3     |blk_mem_gen_tie  |     1|
+|4     |BUFG             |     1|
+|5     |CARRY4           |    29|
+|6     |LUT1             |    21|
+|7     |LUT2             |    43|
+|8     |LUT3             |    79|
+|9     |LUT4             |   103|
+|10    |LUT5             |    87|
+|11    |LUT6             |   120|
+|12    |MUXF7            |     5|
+|13    |FDCE             |   113|
+|14    |FDPE             |     3|
+|15    |FDRE             |    78|
+|16    |IBUF             |     6|
+|17    |OBUF             |    31|
++------+-----------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1564.980 ; gain = 1013.566
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 14 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:17 ; elapsed = 00:00:25 . Memory (MB): peak = 1564.980 ; gain = 926.488
+Synthesis Optimization Complete : Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 1564.980 ; gain = 1013.566
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1574.156 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 34 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1577.836 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 36837423
+INFO: [Common 17-83] Releasing license: Synthesis
+67 Infos, 42 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:27 ; elapsed = 00:00:41 . Memory (MB): peak = 1577.836 ; gain = 1234.371
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1577.836 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Xilinx_project/tictactoe/tictactoe.runs/synth_1/tictactoe_top.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file tictactoe_top_utilization_synth.rpt -pb tictactoe_top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Apr 18 00:40:59 2025...

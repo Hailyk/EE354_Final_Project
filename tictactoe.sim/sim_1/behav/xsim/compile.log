@@ -1,0 +1,10 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/xilinxproject/tictactoe/src/board_controller.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module board_controller
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/xilinxproject/tictactoe/src/display_controller.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module display_controller
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/xilinxproject/tictactoe/src/game_controller.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module game_controller
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/xilinxproject/tictactoe/src/tictactoe_top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tictactoe_top
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/xilinxproject/tictactoe/tictactoe.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl

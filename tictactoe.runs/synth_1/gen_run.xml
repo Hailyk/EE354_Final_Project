@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1744962005" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/tictactoe_top.dcp">
+  <File Type="PA-TCL" Name="tictactoe_top.tcl"/>
+  <File Type="REPORTS-TCL" Name="tictactoe_top_reports.tcl"/>
+  <File Type="RDS-RDS" Name="tictactoe_top.vds"/>
+  <File Type="RDS-PROPCONSTRS" Name="tictactoe_top_drc_synth.rpt"/>
+  <File Type="RDS-UTIL" Name="tictactoe_top_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="tictactoe_top_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="tictactoe_top.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="tictactoe_top_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="tictactoe_top_timing_summary_synth.pb"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PPRDIR/src/board_controller.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/src/debounce_DPB_SCEN_CCEN_MCEN.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/src/display_controller.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/src/tictactoe_top.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/src/blue.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/src/red.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/src/tie.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="tictactoe_top"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PPRDIR/src/nexys7.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
+    <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/tictactoe_top.dcp">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+    <Step Id="synth_design"/>
+  </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="blk_mem_gen_tie"/>
+  <BlockFileSet Type="BlockSrcs" Name="blk_mem_gen_blue"/>
+  <BlockFileSet Type="BlockSrcs" Name="blk_mem_gen_red"/>
+</GenRun>

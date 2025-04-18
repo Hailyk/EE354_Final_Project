@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Fri Apr 18 00:40:08 2025
+# Process ID         : 11152
+# Current directory  : C:/Xilinx_project/tictactoe/tictactoe.runs/blk_mem_gen_blue_synth_1
+# Command line       : vivado.exe -log blk_mem_gen_blue.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source blk_mem_gen_blue.tcl
+# Log file           : C:/Xilinx_project/tictactoe/tictactoe.runs/blk_mem_gen_blue_synth_1/blk_mem_gen_blue.vds
+# Journal file       : C:/Xilinx_project/tictactoe/tictactoe.runs/blk_mem_gen_blue_synth_1\vivado.jou
+# Running On         : buscits
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26100
+# Processor Detail   : 12th Gen Intel(R) Core(TM) i5-1240P
+# CPU Frequency      : 2112 MHz
+# CPU Physical cores : 12
+# CPU Logical cores  : 16
+# Host memory        : 34054 MB
+# Swap memory        : 2147 MB
+# Total Virtual      : 36201 MB
+# Available Virtual  : 28864 MB
+#-----------------------------------------------------------
+source blk_mem_gen_blue.tcl -notrace

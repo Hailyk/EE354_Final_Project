@@ -1,0 +1,12 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../src/board_controller.v" \
+"../../../../src/display_controller.v" \
+"../../../../src/game_controller.v" \
+"../../../../src/tictactoe_top.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

@@ -1,0 +1,7 @@
+Running: xsim.dir/tictactoe_top_behav/xsimk.exe -simmode gui -wdb tictactoe_top_behav.wdb -simrunnum 0 -socket 51915
+Design successfully loaded
+Design Loading Memory Usage: 29588 KB (Peak: 29588 KB)
+Design Loading CPU Usage: 764 ms
+Simulation completed
+Simulation Memory Usage: 30404 KB (Peak: 30404 KB)
+Simulation CPU Usage: 843 ms

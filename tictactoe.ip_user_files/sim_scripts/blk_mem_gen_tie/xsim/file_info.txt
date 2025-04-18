@@ -1,0 +1,2 @@
+blk_mem_gen_tie.v,verilog,xil_defaultlib,../../../../tictactoe.gen/sources_1/ip/blk_mem_gen_tie/sim/blk_mem_gen_tie.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v

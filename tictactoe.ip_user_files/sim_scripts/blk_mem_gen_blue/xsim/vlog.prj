@@ -1,0 +1,7 @@
+verilog xil_defaultlib  \
+"../../../../tictactoe.gen/sources_1/ip/blk_mem_gen_blue/sim/blk_mem_gen_blue.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
