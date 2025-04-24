@@ -15,13 +15,13 @@ module board_controller(
 	output reg [8:0] board,
 	output reg [3:0] PlayerA_Win_Count,
 	output reg [3:0] PlayerB_Win_Count,
-	output reg [3:0] Player_Tie_Win_Count,);
+	output reg [3:0] Player_Tie_Win_Count);
 	
 	reg [8:0] playerA;
 	reg [8:0] playerB;
 	
 	reg[31:0] game_clk;
-	
+	reg board_flash;
 	reg[11:0] end_game_flash;
 	
 	wire[11:0] blue_win_img;
@@ -322,23 +322,23 @@ module board_controller(
     reg col0, col1, col2;
     reg diag0, diag1;
 
-    begin
-        row0 = board[0] & board[1] & board[2];
-        row1 = board[3] & board[4] & board[5];
-        row2 = board[6] & board[7] & board[8];
-
-        col0 = board[0] & board[3] & board[6];
-        col1 = board[1] & board[4] & board[7];
-        col2 = board[2] & board[5] & board[8];
-
-        diag0 = board[0] & board[4] & board[8];
-        diag1 = board[2] & board[4] & board[6];
-
-        playerWin = row0 | row1 | row2 | col0 | col1 | col2 | diag0 | diag1;
-
-        checkboard = playerWin;
-    end
-endfunction
+        begin
+            row0 = board[0] & board[1] & board[2];
+            row1 = board[3] & board[4] & board[5];
+            row2 = board[6] & board[7] & board[8];
+    
+            col0 = board[0] & board[3] & board[6];
+            col1 = board[1] & board[4] & board[7];
+            col2 = board[2] & board[5] & board[8];
+    
+            diag0 = board[0] & board[4] & board[8];
+            diag1 = board[2] & board[4] & board[6];
+    
+            playerWin = row0 | row1 | row2 | col0 | col1 | col2 | diag0 | diag1;
+    
+            checkboard = playerWin;
+        end
+    endfunction
 	
 	
 	assign playerA_win = checkboard(playerA);
@@ -419,8 +419,9 @@ endfunction
 				else if (playerA_win) begin
 					PlayerA_Win_Count = PlayerA_Win_Count + 1'b1;
 				end
-				else if (PlayerB_Win) begin
-					playerB_win = PlayerB_Win_Count + 1'b1;
+				else if (playerB_win) begin
+					PlayerB_Win_Count = PlayerB_Win_Count + 1'b1;
+				end
 			end 
 			else if (board_flash) begin
 				if (end_game_flash == end_game_flash_time) begin

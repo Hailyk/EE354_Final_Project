@@ -1,5 +1,5 @@
 namespace eval ::optrace {
-  variable script "C:/Xilinx_project/tictactoe/tictactoe.runs/impl_1/tictactoe_top.tcl"
+  variable script "C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.runs/impl_1/tictactoe_top.tcl"
   variable category "vivado_impl"
 }
 
@@ -105,26 +105,26 @@ set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 4
-  set_param runs.launchOptions { -jobs 5  }
+  set_param runs.launchOptions { -jobs 10  }
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7a100tcsg324-1
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir C:/Xilinx_project/tictactoe/tictactoe.cache/wt [current_project]
-  set_property parent.project_path C:/Xilinx_project/tictactoe/tictactoe.xpr [current_project]
-  set_property ip_output_repo C:/Xilinx_project/tictactoe/tictactoe.cache/ip [current_project]
+  set_property webtalk.parent_dir C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.cache/wt [current_project]
+  set_property parent.project_path C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.xpr [current_project]
+  set_property ip_output_repo C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES XPM_MEMORY [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet C:/Xilinx_project/tictactoe/tictactoe.runs/synth_1/tictactoe_top.dcp
-  read_ip -quiet C:/Xilinx_project/tictactoe/tictactoe.srcs/sources_1/ip/blk_mem_gen_blue/blk_mem_gen_blue.xci
-  read_ip -quiet C:/Xilinx_project/tictactoe/tictactoe.srcs/sources_1/ip/blk_mem_gen_tie/blk_mem_gen_tie.xci
-  read_ip -quiet C:/Xilinx_project/tictactoe/tictactoe.srcs/sources_1/ip/blk_mem_gen_red/blk_mem_gen_red.xci
+  add_files -quiet C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.runs/synth_1/tictactoe_top.dcp
+  read_ip -quiet C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.srcs/sources_1/ip/blk_mem_gen_blue/blk_mem_gen_blue.xci
+  read_ip -quiet C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.srcs/sources_1/ip/blk_mem_gen_tie/blk_mem_gen_tie.xci
+  read_ip -quiet C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.srcs/sources_1/ip/blk_mem_gen_red/blk_mem_gen_red.xci
 OPTRACE "read constraints: implementation" START { }
-  read_xdc C:/Xilinx_project/tictactoe/src/nexys7.xdc
+  read_xdc C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/src/nexys7.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "read constraints: implementation_pre" START { }
 OPTRACE "read constraints: implementation_pre" END { }
@@ -280,35 +280,4 @@ OPTRACE "route_design write_checkpoint" END { }
 
 OPTRACE "route_design misc" END { }
 OPTRACE "Phase: Route Design" END { }
-OPTRACE "Phase: Write Bitstream" START { ROLLUP_AUTO }
-OPTRACE "write_bitstream setup" START { }
-start_step write_bitstream
-set ACTIVE_STEP write_bitstream
-set rc [catch {
-  create_msg_db write_bitstream.pb
-OPTRACE "read constraints: write_bitstream" START { }
-OPTRACE "read constraints: write_bitstream" END { }
-  set_property XPM_LIBRARIES XPM_MEMORY [current_project]
-  catch { write_mem_info -force -no_partial_mmi tictactoe_top.mmi }
-OPTRACE "write_bitstream setup" END { }
-OPTRACE "write_bitstream" START { }
-  write_bitstream -force tictactoe_top.bit 
-OPTRACE "write_bitstream" END { }
-OPTRACE "write_bitstream misc" START { }
-OPTRACE "read constraints: write_bitstream_post" START { }
-OPTRACE "read constraints: write_bitstream_post" END { }
-  catch {write_debug_probes -quiet -force tictactoe_top}
-  catch {file copy -force tictactoe_top.ltx debug_nets.ltx}
-  close_msg_db -file write_bitstream.pb
-} RESULT]
-if {$rc} {
-  step_failed write_bitstream
-  return -code error $RESULT
-} else {
-  end_step write_bitstream
-  unset ACTIVE_STEP 
-}
-
-OPTRACE "write_bitstream misc" END { }
-OPTRACE "Phase: Write Bitstream" END { }
 OPTRACE "impl_1" END { }

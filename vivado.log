@@ -1,0 +1,57 @@
+#-----------------------------------------------------------
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Wed Apr 23 19:32:35 2025
+# Process ID         : 26272
+# Current directory  : C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project
+# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent25020 C:\Users\Haily.SKUNKWORK\Downloads\EE354_Final_Project\tictactoe.xpr
+# Log file           : C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/vivado.log
+# Journal file       : C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project\vivado.jou
+# Running On         : SkunkWork
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26100
+# Processor Detail   : AMD Ryzen 7 3700X 8-Core Processor             
+# CPU Frequency      : 3593 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 16
+# Host memory        : 34272 MB
+# Swap memory        : 2147 MB
+# Total Virtual      : 36419 MB
+# Available Virtual  : 12680 MB
+#----------------------------------------------------------ststart_guopopen_project C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.xpr
+INFO: [Project 1-313] Project file moved from 'C:/Xilinx_project/tictactoe' since last save.
+Scanning sources...
+Finished scanning sourceININFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specifieININFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'E:/rocketProgram/Xilinx/Vivado/2024.2/data/ip'update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+WARNING: [Common 17-9] Error reading message records.
+WARNING: [Common 17-9] Error reading message records.
+WARNING: [Common 17-9] Error reading message records.
+WARNING: [Common 17-9] Error reading message records.
+exit
+INFO: [Common 17-206] Exiting Vivado at Wed Apr 23 19:42:05 2025...
+-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.runs/blk_mem_gen_tie_synth_1
+
+reset_run blk_mem_gen_red_synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.runs/blk_mem_gen_red_synth_1
+
+reset_run synth_1
+INFO: [Project 1-1161] Replacing file C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.srcs/utils_1/imports/synth_1/tictactoe_top.dcp with file C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.runs/synth_1/tictactoe_top.dcp
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.runs/synth_1
+
+launch_runs synth_1 -jobs 10
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'blk_mem_gen_blue'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'blk_mem_gen_tie'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'blk_mem_gen_red'...
+[Wed Apr 23 19:41:08 2025] Launched synth_1...
+Run output will be captured here: C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.runs/synth_1/runme.log
+launch_runs: Time (s): cpu = 00:00:05 ; elapsed = 00:00:22 . Memory (MB): peak = 1319.824 ; gain = 0.000
+launch_runs impl_1 -jobs 10
+[Wed Apr 23 19:42:30 2025] Launched impl_1...
+Run output will be captured here: C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.runs/impl_1/runme.log
+launch_runs: Time (s): cpu = 00:00:01 ; elapsed = 00:00:18 . Memory (MB): peak = 1319.824 ; gain = 0.000
