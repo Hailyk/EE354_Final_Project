@@ -12,9 +12,9 @@ echo "Please update the PATH and LD_LIBRARY_PATH variables below, before executi
 exit
 
 if [ -z "$PATH" ]; then
-  PATH=E:/rocketProgram/Xilinx/Vitis/2024.2/bin;E:/rocketProgram/Xilinx/Vivado/2024.2/ids_lite/ISE/bin/nt64;E:/rocketProgram/Xilinx/Vivado/2024.2/ids_lite/ISE/lib/nt64:E:/rocketProgram/Xilinx/Vivado/2024.2/bin
+  PATH=C:/Xilinx/Vitis/2024.2/bin;C:/Xilinx/Vivado/2024.2/ids_lite/ISE/bin/nt64;C:/Xilinx/Vivado/2024.2/ids_lite/ISE/lib/nt64:C:/Xilinx/Vivado/2024.2/bin
 else
-  PATH=E:/rocketProgram/Xilinx/Vitis/2024.2/bin;E:/rocketProgram/Xilinx/Vivado/2024.2/ids_lite/ISE/bin/nt64;E:/rocketProgram/Xilinx/Vivado/2024.2/ids_lite/ISE/lib/nt64:E:/rocketProgram/Xilinx/Vivado/2024.2/bin:$PATH
+  PATH=C:/Xilinx/Vitis/2024.2/bin;C:/Xilinx/Vivado/2024.2/ids_lite/ISE/bin/nt64;C:/Xilinx/Vivado/2024.2/ids_lite/ISE/lib/nt64:C:/Xilinx/Vivado/2024.2/bin:$PATH
 fi
 export PATH
 
@@ -25,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.runs/blk_mem_gen_blue_synth_1'
+HD_PWD='C:/Xilinx_project/tictactoe/tictactoe.runs/blk_mem_gen_blue_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

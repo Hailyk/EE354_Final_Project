@@ -32,10 +32,6 @@ module board_controller(
 	
 	wire image_on;
 	
-	
-	wire [$clog2(IMG_width)-1:0] image_hCount = hCount - x_blank;
-	wire [$clog2(IMG_height)-1:0] image_vCount = vCount - y_blank;
-	
 	parameter WHITE   = 12'b1111_1111_1111;
     parameter GRAY    = 12'b1000_1000_1000; // Color for grid lines
 	parameter GREEN   = 12'b0000_1111_0000; // selector color
@@ -43,8 +39,6 @@ module board_controller(
     parameter BLUE    = 12'b0000_0000_1111; // Player 1 color
     parameter BLACK   = 12'b0000_0000_0000; // Color outside display area
 	
-	parameter VGA_width   = 640;
-	parameter VGA_height  = 480;
 	parameter Stored_IMG_width = 190;
 	parameter Stored_IMG_height = 190;
 	parameter Stored_IMG_pixel = Stored_IMG_width * Stored_IMG_height;
@@ -60,6 +54,9 @@ module board_controller(
 	
 	parameter x_blank = x_offset + 143;
 	parameter y_blank = y_offset + 34;
+
+	wire [$clog2(IMG_width)-1:0] image_hCount = hCount - x_blank;
+	wire [$clog2(IMG_height)-1:0] image_vCount = vCount - y_blank;
 	
 	wire [$clog2(IMG_width)-1:0] image_hCoord;
 	wire [$clog2(IMG_height)-1:0] image_vCoord;
@@ -68,6 +65,8 @@ module board_controller(
 	wire [$clog2(Stored_IMG_height)-1:0] stored_vCoord;
 	
 	wire [$clog2(Stored_IMG_pixel)-1:0] bram_address;
+
+	wire [11:0] sub_rgb;
 	
 	assign bram_address = stored_vCoord * Stored_IMG_width + stored_hCoord;
 	
@@ -76,6 +75,8 @@ module board_controller(
 	
 	assign stored_hCoord = image_hCoord / 2;
 	assign stored_vCoord = image_vCoord / 2;
+
+	assign sub_board_rst = rst || (board_flash && end_game_flash == end_game_flash_time);
 	
 	
 	blk_mem_gen_blue blue_bram_inst (
@@ -93,6 +94,33 @@ module board_controller(
 		.ena(board_outline),
 		.addra(bram_address),
 		.douta(tie_img));
+
+
+	wire[3:0] sub_selector_bit;
+	wire[2:0] sub_cursorX, sub_cursorX;
+	reg sub_board_selected;
+	wire[2:0] sub_win;
+
+	sub_board_controller sub_board_0_0 (
+	.clk(clk),
+	.rst(sub_board_rst),
+	.up(up),
+	.down(down), 
+	.left(left), 
+	.right(right),
+	.select(select),
+	.hCount(hCount),
+	.vCount(vCount),
+	.x_offset(10),
+	.y_offset(10),
+	.game_clk(game_clk),
+	.rgb(sub_rgb),
+	.selector_bit(sub_selector_bit),
+	.cursorX(sub_cursorX),
+	.cursorY(sub_cursorY),
+	.turn(turn),
+	.sub_board_selected(sub_board_selected),
+	.win(sub_win));
 	
 	
 	
@@ -156,73 +184,8 @@ module board_controller(
 			else if(selector_bit == 8 && board_cell_background_2_2 && !cell_2_2 && game_clk[26]) begin
 				rgb = WHITE;
 			end
-			else if(board[0] == 1'b1 && board_cell_background_0_0 && cell_0_0) begin
-				if(playerA[0])
-					rgb = BLUE;
-				else if (playerB[0])
-					rgb = RED;
-				else 
-					rgb = BLACK;
-			end
-			else if(board[1] == 1'b1 && board_cell_background_1_0 && cell_1_0) begin
-				if(playerA[1])
-					rgb = BLUE;
-				else if (playerB[1])
-					rgb = RED;
-				else 
-					rgb = BLACK;
-			end
-			else if(board[2] == 1'b1 && board_cell_background_2_0 && cell_2_0) begin
-				if(playerA[2])
-					rgb = BLUE;
-				else if (playerB[2])
-					rgb = RED;
-				else 
-					rgb = BLACK;
-			end
-			else if(board[3] == 1'b1 && board_cell_background_0_1 && cell_0_1) begin
-				if(playerA[3])
-					rgb = BLUE;
-				else if (playerB[3])
-					rgb = RED;
-				else 
-					rgb = BLACK;
-			end
-			else if(board[4] == 1'b1 && board_cell_background_1_1 && cell_1_1) begin
-				if(playerA[4])
-					rgb = BLUE;
-				else if (playerB[4])
-					rgb = RED;
-				else 
-					rgb = BLACK;
-			end
-			else if(board[5] == 1'b1 && board_cell_background_2_1 && cell_2_1) begin
-				if(playerA[5])
-					rgb = BLUE;
-				else if (playerB[5])
-					rgb = RED;
-				else rgb = BLACK;
-			end
-			else if(board[6] == 1'b1 && board_cell_background_0_2 && cell_0_2) begin
-				if(playerA[6])
-					rgb = BLUE;
-				else if (playerB[6])
-					rgb = RED;
-				else rgb = BLACK;
-			end
-			else if(board[7] == 1'b1 && board_cell_background_1_2 && cell_1_2) begin
-				if(playerA[7])
-					rgb = BLUE;
-				else if (playerB[7])
-					rgb = RED;
-				else rgb = BLACK;
-			end
-			else if(board[8] == 1'b1 && board_cell_background_2_2 &&cell_2_2) begin
-				if(playerA[8])
-					rgb = BLUE;
-				else if (playerB[8])
-					rgb = RED;
-				else rgb = BLACK;
+			else if (board_cell_background_0_0 && cell_0_0) begin 
+				rgb = sub_rgb;
 			end
 			else begin
 				rgb = BLACK;
@@ -314,7 +277,7 @@ module board_controller(
 						(hCount <= (380 + x_blank - padding)) && 
 						(vCount >= (260 + y_blank + padding)) && 
 						(vCount <= (380 + y_blank - padding));
-						
+
 	
 	function reg checkboard (input reg [8:0] board);
     reg playerWin;
