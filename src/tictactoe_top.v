@@ -20,6 +20,7 @@ module tictactoe_top(
 	);
 	wire Reset;
 	assign Reset=BtnR && BtnL;
+	assign Back = BtnU && BtnD;
 	wire bright;
 	wire[9:0] hc, vc;
 	wire[15:0] score;
@@ -76,6 +77,7 @@ module tictactoe_top(
 		.clk(ClkPort), 
 		.bright(bright), 
 		.rst(Reset), 
+		.back(Back),
 		.up(BtnU_pulse), 
 		.down(BtnD_pulse),
 		.left(BtnL_pulse),

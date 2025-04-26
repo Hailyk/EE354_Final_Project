@@ -3,6 +3,7 @@
 module sub_board_controller(
 	input clk,
 	input rst,
+	input back,
 	input up, down, left, right, select,
 	input [9:0] hCount, vCount,
 	input [9:0] x_offset, y_offset,
@@ -10,15 +11,15 @@ module sub_board_controller(
 	input turn,
 	input sub_board_selected,
 	output reg [11:0] rgb,
-	output reg [3:0] selector_bit,
-	output reg [1:0] cursorX,
-	output reg [1:0] cursorY,
 	output reg [2:0] win);
 	
 	reg [8:0] playerA;
 	reg [8:0] playerB;
 	reg [8:0] board;
-	
+
+	reg [3:0] selector_bit;
+	reg [1:0] cursorX;
+	reg [1:0] cursorY;
 	reg board_flash;
 	reg[11:0] end_game_flash;
 	
@@ -29,7 +30,7 @@ module sub_board_controller(
     parameter BLUE    = 12'b0000_0000_1111; // Player 1 color
     parameter BLACK   = 12'b0000_0000_0000; // Color outside display area
 	
-	parameter padding = 0;
+	parameter padding = 2;
 	parameter end_game_flash_time = 512;
 	
 	wire[9:0] x_blank = x_offset + 143;
@@ -135,10 +136,11 @@ module sub_board_controller(
 					rgb = BLUE;
 				else if (playerB[8])
 					rgb = RED;
-				else rgb = BLACK;
+				else
+					rgb = BLACK;
 			end
 			else begin
-				rgb = 11'bxxxxxxxxxxxx;
+				rgb = BLACK;
 			end
 		end
 		else begin
@@ -171,7 +173,7 @@ module sub_board_controller(
 										(vCount >= 0 + y_blank) && 	(vCount <= 32 + y_blank);
  
 	// cell background row 1
-	assign board_cell_background_0_1 = 	(hCount >= 0 + x_blank) && 	(hCount <= 38 + x_blank) && 
+	assign board_cell_background_0_1 = 	(hCount >= 0 + x_blank) && 	(hCount <= 32 + x_blank) && 
 										(vCount >= 34 + y_blank) && 	(vCount <= 66 + y_blank);
 	assign board_cell_background_1_1 = 	(hCount >= 34 + x_blank) && 	(hCount <= 66 + x_blank) && 
 										(vCount >= 34 + y_blank) && 	(vCount <= 66 + y_blank);
@@ -275,7 +277,7 @@ module sub_board_controller(
 			playerB <= 9'b000000000;
 			board <= 9'b000000000;
 		end
-		else if (!board_flash) begin
+		else if (!board_flash && sub_board_selected) begin
 			if (left) begin
 				if (cursorX > 0) begin
 					cursorX <= cursorX - 1;
@@ -318,6 +320,7 @@ module sub_board_controller(
 		if (rst) begin
 			end_game_flash <= 11'b0000_0000_0000;
 			board_flash <= 1'b0;
+			win <= 3'b000;
 		end 
 		else begin
 			if ((board_full || playerA_win || playerB_win) && !board_flash) begin

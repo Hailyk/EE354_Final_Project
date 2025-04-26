@@ -4,6 +4,7 @@ module board_controller(
 	input clk,
 	input bright,
 	input rst,
+	input back,
 	input up, down, left, right, select,
 	input [9:0] hCount, vCount,
 	output reg [11:0] rgb,
@@ -97,13 +98,14 @@ module board_controller(
 
 
 	wire[3:0] sub_selector_bit;
-	wire[2:0] sub_cursorX, sub_cursorX;
-	reg sub_board_selected;
+	wire[2:0] sub_cursorX, sub_cursorY;
+	reg [8:0] sub_board_selected;
 	wire[2:0] sub_win;
 
 	sub_board_controller sub_board_0_0 (
 	.clk(clk),
 	.rst(sub_board_rst),
+	.back(back),
 	.up(up),
 	.down(down), 
 	.left(left), 
@@ -115,11 +117,8 @@ module board_controller(
 	.y_offset(10),
 	.game_clk(game_clk),
 	.rgb(sub_rgb),
-	.selector_bit(sub_selector_bit),
-	.cursorX(sub_cursorX),
-	.cursorY(sub_cursorY),
 	.turn(turn),
-	.sub_board_selected(sub_board_selected),
+	.sub_board_selected(sub_board_selected[0]),
 	.win(sub_win));
 	
 	
@@ -185,14 +184,22 @@ module board_controller(
 				rgb = WHITE;
 			end
 			else if (board_cell_background_0_0 && cell_0_0) begin 
-				rgb = sub_rgb;
+				if(sub_win == 3'b001)begin
+					rgb = BLUE;
+				end
+				else if(sub_win == 3'b010)begin
+					rgb = RED;
+				end
+				else begin
+					rgb = sub_rgb;
+				end
 			end
 			else begin
 				rgb = BLACK;
 			end
 		end
 		else begin
-			rgb = BLACK;
+			rgb = 11'bxxxxxxxxxxxx;
 		end
 	end
 	
@@ -327,40 +334,48 @@ module board_controller(
 			turn <= 1'b0;
 		end 
 		else if (!board_flash) begin
-			if (left) begin
-				if (cursorX > 0) begin
-					cursorX <= cursorX - 1;
-					selector_bit <= selector_bit - 1;
-				end
-			end else if (right) begin
-				if (cursorX < 2) begin
-					cursorX <= cursorX + 1;
-					selector_bit <= selector_bit + 1;
-				end
-			end 
-			else if (up) begin
-				if (cursorY > 0) begin
-					cursorY <= cursorY - 1;
-					selector_bit <= selector_bit - 3;
-				end
-			end 
-			else if (down) begin
-				if (cursorY < 2) begin
-					cursorY <= cursorY + 1;
-					selector_bit <= selector_bit + 3;
-				end
-			end 
-			else if (select) begin
-				if (board[selector_bit] == 1'b0) begin
-					board[selector_bit] <= 1'b1;
-					if (turn == 1'b0) begin
-						playerA[selector_bit] <= 1'b1;
-						turn <= 1'b1;
-					end 
-					else begin
-						playerB[selector_bit] <= 1'b1;
-						turn <= 1'b0;
+			if(sub_board_selected == 1'b0)begin
+				if (left) begin
+					if (cursorX > 0) begin
+						cursorX <= cursorX - 1;
+						selector_bit <= selector_bit - 1;
 					end
+				end else if (right) begin
+					if (cursorX < 2) begin
+						cursorX <= cursorX + 1;
+						selector_bit <= selector_bit + 1;
+					end
+				end 
+				else if (up) begin
+					if (cursorY > 0) begin
+						cursorY <= cursorY - 1;
+						selector_bit <= selector_bit - 3;
+					end
+				end 
+				else if (down) begin
+					if (cursorY < 2) begin
+						cursorY <= cursorY + 1;
+						selector_bit <= selector_bit + 3;
+					end
+				end 
+				else if (select) begin
+					if (board[selector_bit] == 1'b0 && (sub_win == 3'b000)) begin
+						sub_board_selected[selector_bit] <= 1'b1;
+ 					end
+				end
+			end
+			else begin
+				if(select)begin
+					if (turn == 1'b0) begin
+							turn <= 1'b1;
+						end 
+						else begin
+							turn <= 1'b0;
+						end
+					sub_board_selected <= 1'b0;					
+				end
+				else if(back)begin
+					sub_board_selected <= 1'b0;
 				end
 			end
 		end
