@@ -20,7 +20,10 @@ module board_controller(
 	
 	reg [8:0] playerA;
 	reg [8:0] playerB;
+	//reg self_select;
+	reg win;
 	
+	reg win;
 	reg[31:0] game_clk;
 	reg board_flash;
 	reg[11:0] end_game_flash;
@@ -67,7 +70,16 @@ module board_controller(
 	
 	wire [$clog2(Stored_IMG_pixel)-1:0] bram_address;
 
-	wire [11:0] sub_rgb;
+	//sub rgb outputs
+	wire [11:0] sub_rgb_0;
+	wire [11:0] sub_rgb_1;
+	wire [11:0] sub_rgb_2;
+	wire [11:0] sub_rgb_3;
+	wire [11:0] sub_rgb_4;
+	wire [11:0] sub_rgb_5;
+	wire [11:0] sub_rgb_6;
+	wire [11:0] sub_rgb_7;
+	wire [11:0] sub_rgb_8;
 	
 	assign bram_address = stored_vCoord * Stored_IMG_width + stored_hCoord;
 	
@@ -100,8 +112,71 @@ module board_controller(
 	wire[3:0] sub_selector_bit;
 	wire[2:0] sub_cursorX, sub_cursorY;
 	reg [8:0] sub_board_selected;
-	wire[2:0] sub_win;
+	
+	//wire sub board outputs to big board
+	wire[2:0] sub_win_0;
+	wire[2:0] sub_win_1;
+	wire[2:0] sub_win_2;
+	wire[2:0] sub_win_3;
+	wire[2:0] sub_win_4;
+	wire[2:0] sub_win_5;
+	wire[2:0] sub_win_6;
+	wire[2:0] sub_win_7;
+	wire[2:0] sub_win_8;
 
+	//wire sub board outputs to big board
+	// wire[3:0] sub_selector_0;
+	// wire[3:0] sub_selector_1;
+	// wire[3:0] sub_selector_2;
+	// wire[3:0] sub_selector_3;
+	// wire[3:0] sub_selector_4;
+	// wire[3:0] sub_selector_5;
+	// wire[3:0] sub_selector_6;
+	// wire[3:0] sub_selector_7;
+	// wire[3:0] sub_selector_8;
+
+	
+	// latch any new sub-board results forever
+	//	once a result goes high it will stay high
+	always @ (posedge clk, posedge rst) begin
+		if (rst) begin
+			playerA <= 9'b0;
+			playerB <= 9'b0;
+			board   <= 9'b0;
+		end 
+		else begin
+		playerA[0] <= playerA[0] | sub_win_0[0];
+			playerA[1] <= playerA[1] | sub_win_1[0];
+			playerA[2] <= playerA[2] | sub_win_2[0];
+			playerA[3] <= playerA[3] | sub_win_3[0];
+			playerA[4] <= playerA[4] | sub_win_4[0];
+			playerA[5] <= playerA[5] | sub_win_5[0];
+			playerA[6] <= playerA[6] | sub_win_6[0];
+			playerA[7] <= playerA[7] | sub_win_7[0];
+			playerA[8] <= playerA[8] | sub_win_8[0];
+
+			playerB[0] <= playerB[0] | sub_win_0[1];
+			playerB[1] <= playerB[1] | sub_win_1[1];
+			playerB[2] <= playerB[2] | sub_win_2[1];
+			playerB[3] <= playerB[3] | sub_win_3[1];
+			playerB[4] <= playerB[4] | sub_win_4[1];
+			playerB[5] <= playerB[5] | sub_win_5[1];
+			playerB[6] <= playerB[6] | sub_win_6[1];
+			playerB[7] <= playerB[7] | sub_win_7[1];
+			playerB[8] <= playerB[8] | sub_win_8[1];
+
+			board[0]   <= board[0]   | sub_win_0[2];
+			board[1]   <= board[1]   | sub_win_1[2];
+			board[2]   <= board[2]   | sub_win_2[2];
+			board[3]   <= board[3]   | sub_win_3[2];
+			board[4]   <= board[4]   | sub_win_4[2];
+			board[5]   <= board[5]   | sub_win_5[2];
+			board[6]   <= board[6]   | sub_win_6[2];
+			board[7]   <= board[7]   | sub_win_7[2];
+			board[8]   <= board[8]   | sub_win_8[2];
+		end
+	end
+	//row 0
 	sub_board_controller sub_board_0_0 (
 	.clk(clk),
 	.rst(sub_board_rst),
@@ -116,12 +191,164 @@ module board_controller(
 	.x_offset(10),
 	.y_offset(10),
 	.game_clk(game_clk),
-	.rgb(sub_rgb),
+	.rgb(sub_rgb_0),
 	.turn(turn),
 	.sub_board_selected(sub_board_selected[0]),
-	.win(sub_win));
+	.win(sub_win_0));
+
+	sub_board_controller sub_board_1_0 (
+	.clk(clk),
+	.rst(sub_board_rst),
+	.back(back),
+	.up(up),
+	.down(down), 
+	.left(left), 
+	.right(right),
+	.select(select),
+	.hCount(hCount),
+	.vCount(vCount),
+	.x_offset(140),
+	.y_offset(10),
+	.game_clk(game_clk),
+	.rgb(sub_rgb_1),
+	.turn(turn),
+	.sub_board_selected(sub_board_selected[1]),
+	.win(sub_win_1));
+
+	sub_board_controller sub_board_2_0 (
+	.clk(clk),
+	.rst(sub_board_rst),
+	.back(back),
+	.up(up),
+	.down(down), 
+	.left(left), 
+	.right(right),
+	.select(select),
+	.hCount(hCount),
+	.vCount(vCount),
+	.x_offset(270),
+	.y_offset(10),
+	.game_clk(game_clk),
+	.rgb(sub_rgb_2),
+	.turn(turn),
+	.sub_board_selected(sub_board_selected[2]),
+	.win(sub_win_2));
 	
-	
+	//row 2
+	sub_board_controller sub_board_0_1 (
+	.clk(clk),
+	.rst(sub_board_rst),
+	.back(back),
+	.up(up),
+	.down(down), 
+	.left(left), 
+	.right(right),
+	.select(select),
+	.hCount(hCount),
+	.vCount(vCount),
+	.x_offset(10),
+	.y_offset(140),
+	.game_clk(game_clk),
+	.rgb(sub_rgb_3),
+	.turn(turn),
+	.sub_board_selected(sub_board_selected[3]),
+	.win(sub_win_3));
+
+	sub_board_controller sub_board_1_1 (
+	.clk(clk),
+	.rst(sub_board_rst),
+	.back(back),
+	.up(up),
+	.down(down), 
+	.left(left), 
+	.right(right),
+	.select(select),
+	.hCount(hCount),
+	.vCount(vCount),
+	.x_offset(140),
+	.y_offset(140),
+	.game_clk(game_clk),
+	.rgb(sub_rgb_4),
+	.turn(turn),
+	.sub_board_selected(sub_board_selected[4]),
+	.win(sub_win_4));
+
+	sub_board_controller sub_board_2_1 (
+	.clk(clk),
+	.rst(sub_board_rst),
+	.back(back),
+	.up(up),
+	.down(down), 
+	.left(left), 
+	.right(right),
+	.select(select),
+	.hCount(hCount),
+	.vCount(vCount),
+	.x_offset(270),
+	.y_offset(140),
+	.game_clk(game_clk),
+	.rgb(sub_rgb_5),
+	.turn(turn),
+	.sub_board_selected(sub_board_selected[5]),
+	.win(sub_win_5));
+
+	//row 3
+	sub_board_controller sub_board_0_2 (
+	.clk(clk),
+	.rst(sub_board_rst),
+	.back(back),
+	.up(up),
+	.down(down), 
+	.left(left), 
+	.right(right),
+	.select(select),
+	.hCount(hCount),
+	.vCount(vCount),
+	.x_offset(10),
+	.y_offset(270),
+	.game_clk(game_clk),
+	.rgb(sub_rgb_6),
+	.turn(turn),
+	.sub_board_selected(sub_board_selected[6]),
+	.win(sub_win_6));
+
+	sub_board_controller sub_board_1_2 (
+	.clk(clk),
+	.rst(sub_board_rst),
+	.back(back),
+	.up(up),
+	.down(down), 
+	.left(left), 
+	.right(right),
+	.select(select),
+	.hCount(hCount),
+	.vCount(vCount),
+	.x_offset(140),
+	.y_offset(270),
+	.game_clk(game_clk),
+	.rgb(sub_rgb_7),
+	.turn(turn),
+	.sub_board_selected(sub_board_selected[7]),
+	.win(sub_win_7));
+
+	sub_board_controller sub_board_2_2 (
+	.clk(clk),
+	.rst(sub_board_rst),
+	.back(back),
+	.up(up),
+	.down(down), 
+	.left(left), 
+	.right(right),
+	.select(select),
+	.hCount(hCount),
+	.vCount(vCount),
+	.x_offset(270),
+	.y_offset(270),
+	.game_clk(game_clk),
+	.rgb(sub_rgb_8),
+	.turn(turn),
+	.sub_board_selected(sub_board_selected[8]),
+	.win(sub_win_8));
 	
 	always@ (posedge clk, posedge rst) begin
 		if(rst)
@@ -135,7 +362,7 @@ module board_controller(
 	always@ (*) begin
     	if(~bright )	//force black if not inside the display area
 			rgb = BLACK;
-		else if (board_flash && board_outline) begin
+		else if (win && board_outline) begin
 			if (board_full) begin
 				rgb = tie_img;
 			end
@@ -183,15 +410,133 @@ module board_controller(
 			else if(selector_bit == 8 && board_cell_background_2_2 && !cell_2_2 && game_clk[26]) begin
 				rgb = WHITE;
 			end
+			//row 1
 			else if (board_cell_background_0_0 && cell_0_0) begin 
-				if(sub_win == 3'b001)begin
+				if(sub_win_0 == 3'b101)begin
 					rgb = BLUE;
 				end
-				else if(sub_win == 3'b010)begin
+				else if(sub_win_0 == 3'b110)begin
 					rgb = RED;
 				end
+				else if(sub_win_0 == 3'b100)begin
+					rgb = GRAY;
+				end
 				else begin
-					rgb = sub_rgb;
+					rgb = sub_rgb_0;
+				end
+			end
+			else if (board_cell_background_1_0 && cell_1_0) begin 
+				if(sub_win_1 == 3'b101)begin
+					rgb = BLUE;
+				end
+				else if(sub_win_1 == 3'b110)begin
+					rgb = RED;
+				end
+				else if(sub_win_1 == 3'b100)begin
+					rgb = GRAY;
+				end
+				else begin
+					rgb = sub_rgb_1;
+				end
+			end
+			else if (board_cell_background_2_0 && cell_2_0) begin 
+				if(sub_win_2 == 3'b101)begin
+					rgb = BLUE;
+				end
+				else if(sub_win_2 == 3'b110)begin
+					rgb = RED;
+				end
+				else if(sub_win_2 == 3'b100)begin
+					rgb = GRAY;
+				end
+				else begin
+					rgb = sub_rgb_2;
+				end
+			end
+			//row 2
+			else if (board_cell_background_0_1 && cell_0_1) begin 
+				if(sub_win_3 == 3'b101)begin
+					rgb = BLUE;
+				end
+				else if(sub_win_3 == 3'b110)begin
+					rgb = RED;
+				end
+				else if(sub_win_3 == 3'b100)begin
+					rgb = GRAY;
+				end
+				else begin
+					rgb = sub_rgb_3;
+				end
+			end
+			else if (board_cell_background_1_1 && cell_1_1) begin 
+				if(sub_win_4 == 3'b101)begin
+					rgb = BLUE;
+				end
+				else if(sub_win_4 == 3'b110)begin
+					rgb = RED;
+				end
+				else if(sub_win_4 == 3'b100)begin
+					rgb = GRAY;
+				end
+				else begin
+					rgb = sub_rgb_4;
+				end
+			end
+			else if (board_cell_background_2_1 && cell_2_1) begin 
+				if(sub_win_5 == 3'b101)begin
+					rgb = BLUE;
+				end
+				else if(sub_win_5 == 3'b110)begin
+					rgb = RED;
+				end
+				else if(sub_win_5 == 3'b100)begin
+					rgb = GRAY;
+				end
+				else begin
+					rgb = sub_rgb_5;
+				end
+			end
+			//row3
+			else if (board_cell_background_0_2 && cell_0_2) begin 
+				if(sub_win_6 == 3'b101)begin
+					rgb = BLUE;
+				end
+				else if(sub_win_6 == 3'b110)begin
+					rgb = RED;
+				end
+				else if(sub_win_6 == 3'b100)begin
+					rgb = GRAY;
+				end
+				else begin
+					rgb = sub_rgb_6;
+				end
+			end
+			else if (board_cell_background_1_2 && cell_1_2) begin 
+				if(sub_win_7 == 3'b101)begin
+					rgb = BLUE;
+				end
+				else if(sub_win_7 == 3'b110)begin
+					rgb = RED;
+				end
+				else if(sub_win_7 == 3'b100)begin
+					rgb = GRAY;
+				end
+				else begin
+					rgb = sub_rgb_7;
+				end
+			end
+			else if (board_cell_background_2_2 && cell_2_2) begin 
+				if(sub_win_8 == 3'b101)begin
+					rgb = BLUE;
+				end
+				else if(sub_win_8 == 3'b110)begin
+					rgb = RED;
+				end
+				else if(sub_win_8 == 3'b100)begin
+					rgb = GRAY;
+				end
+				else begin
+					rgb = sub_rgb_8;
 				end
 			end
 			else begin
@@ -315,17 +660,26 @@ module board_controller(
 	assign playerB_win = checkboard(playerB);
 	assign board_full = board == 9'b1_1111_1111;
 	
+	always @(posedge clk or posedge rst) begin
+  		if (rst) 
+    		win <= 1'b0;
+  		else 
+    		win <= win | playerA_win | playerB_win | board_full;
+	end
+	
 		
 	// controller
 	always @(posedge clk, posedge rst) begin
 		if (rst) begin
 			cursorX <= 2'd1;
-			cursorY <= 2'd1;
+			cursorY <= 2	'd1;
 			selector_bit <= 4'd4;
 			playerA <= 9'b000000000;
 			playerB <= 9'b000000000;
 			board <= 9'b000000000;
 			turn <= 1'b0;
+			sub_board_selected = 9'b000000000;
+			//self_select = 1'b1;
 		end 
 		else if (board_flash && end_game_flash == end_game_flash_time) begin
 			playerA <= 9'b000000000;
@@ -334,7 +688,7 @@ module board_controller(
 			turn <= 1'b0;
 		end 
 		else if (!board_flash) begin
-			if(sub_board_selected == 1'b0)begin
+			if(sub_board_selected == 9'b000000000)begin
 				if (left) begin
 					if (cursorX > 0) begin
 						cursorX <= cursorX - 1;
@@ -359,8 +713,9 @@ module board_controller(
 					end
 				end 
 				else if (select) begin
-					if (board[selector_bit] == 1'b0 && (sub_win == 3'b000)) begin
+					if (board[selector_bit] == 1'b0) begin
 						sub_board_selected[selector_bit] <= 1'b1;
+						//self_select <= 1'b0;
  					end
 				end
 			end
@@ -369,13 +724,25 @@ module board_controller(
 					if (turn == 1'b0) begin
 							turn <= 1'b1;
 						end 
-						else begin
+					else begin
 							turn <= 1'b0;
-						end
-					sub_board_selected <= 1'b0;					
+					end
+					// case(sub_board_selected)
+					// 	9'b000000001: selector_bit <= sub_selector_0;
+					// 	9'b000000010: selector_bit <= sub_selector_1;
+					// 	9'b000000100: selector_bit <= sub_selector_2;
+					// 	9'b000001000: selector_bit <= sub_selector_3;
+					// 	9'b000010000: selector_bit <= sub_selector_4;
+					// 	9'b000100000: selector_bit <= sub_selector_5;
+					// 	9'b001000000: selector_bit <= sub_selector_6;
+					// 	9'b010000000: selector_bit <= sub_selector_7;
+					// 	9'b100000000: selector_bit <= sub_selector_8;
+					// 	default 
+					// endcase
+					sub_board_selected <=  9'b000000000;				
 				end
 				else if(back)begin
-					sub_board_selected <= 1'b0;
+					sub_board_selected <=  9'b000000000;
 				end
 			end
 		end
@@ -384,13 +751,13 @@ module board_controller(
 
 	always @(posedge logic_clk, posedge rst) begin
 		if (rst) begin
-			end_game_flash <= 11'b0000_0000_0000;
+			end_game_flash <= 12'b0000_0000_0000;
 			board_flash <= 1'b0;
 		end 
 		else begin
-			if ((board_full || playerA_win || playerB_win) && !board_flash) begin
+			if (win && !board_flash) begin
 				board_flash <= 1'b1;
-				end_game_flash <= 11'b0000_0000_0000;
+				end_game_flash <= 12'b0000_0000_0000;
 				if (board_full) begin
 					Player_Tie_Win_Count = Player_Tie_Win_Count + 1'b1;
 				end
@@ -402,19 +769,14 @@ module board_controller(
 				end
 			end 
 			else if (board_flash) begin
-				if (end_game_flash == end_game_flash_time) begin
+				if (end_game_flash < end_game_flash_time) begin
+					end_game_flash <= end_game_flash + 1;
+				end else begin
 					board_flash <= 1'b0;
-					end_game_flash <= 11'b0000_0000_0000;
-				end 
-				else begin
-					end_game_flash <= end_game_flash + 1'b1;
+					win <= 1'b0;
+					end_game_flash <= 12'b0000_0000_0000;
 				end
-			end 
-			else begin
-				 end_game_flash <= 11'b0000_0000_0000;
 			end
 		end
 	end
-	
-	
 endmodule

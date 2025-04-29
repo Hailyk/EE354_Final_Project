@@ -11,7 +11,8 @@ module sub_board_controller(
 	input turn,
 	input sub_board_selected,
 	output reg [11:0] rgb,
-	output reg [2:0] win);
+	output reg [2:0] win,
+	output reg [3:0] selector);
 	
 	reg [8:0] playerA;
 	reg [8:0] playerB;
@@ -21,7 +22,7 @@ module sub_board_controller(
 	reg [1:0] cursorX;
 	reg [1:0] cursorY;
 	reg board_flash;
-	reg[11:0] end_game_flash;
+	//reg[11:0] end_game_flash;
 	
 	parameter WHITE   = 12'b1111_1111_1111;
     parameter GRAY    = 12'b1000_1000_1000; // Color for grid lines
@@ -31,7 +32,7 @@ module sub_board_controller(
     parameter BLACK   = 12'b0000_0000_0000; // Color outside display area
 	
 	parameter padding = 2;
-	parameter end_game_flash_time = 512;
+	//parameter end_game_flash_time = 512;
 	
 	wire[9:0] x_blank = x_offset + 143;
 	wire[9:0] y_blank = y_offset + 34;
@@ -44,31 +45,58 @@ module sub_board_controller(
 				rgb = GRAY;
 			end
 			else if(selector_bit == 0 && board_cell_background_0_0 && !cell_0_0 && game_clk[26]) begin
-				rgb = WHITE;
+				if(sub_board_selected == 1'b1) begin
+					rgb = WHITE; end
+				else begin
+					rgb = BLACK; end
 			end
 			else if(selector_bit == 1 && board_cell_background_1_0 && !cell_1_0 && game_clk[26]) begin
-				rgb = WHITE;
+				if(sub_board_selected == 1'b1) begin
+					rgb = WHITE; end
+				else begin
+					rgb = BLACK; end			
 			end
 			else if(selector_bit == 2 && board_cell_background_2_0 && !cell_2_0 && game_clk[26]) begin
-				rgb = WHITE;
+				if(sub_board_selected == 1'b1) begin
+					rgb = WHITE; end
+				else begin
+					rgb = BLACK; end
 			end
 			else if(selector_bit == 3 && board_cell_background_0_1 && !cell_0_1 && game_clk[26]) begin
-				rgb = WHITE;
+				if(sub_board_selected == 1'b1) begin
+					rgb = WHITE; end
+				else begin
+					rgb = BLACK; end			
 			end
 			else if(selector_bit == 4 && board_cell_background_1_1 && !cell_1_1 && game_clk[26]) begin
-				rgb = WHITE;
+				if(sub_board_selected == 1'b1) begin
+					rgb = WHITE; end
+				else begin
+					rgb = BLACK; end
 			end
 			else if(selector_bit == 5 && board_cell_background_2_1 && !cell_2_1 && game_clk[26]) begin
-				rgb = WHITE;
+				if(sub_board_selected == 1'b1) begin
+					rgb = WHITE; end
+				else begin
+					rgb = BLACK; end
 			end
 			else if(selector_bit == 6 && board_cell_background_0_2 && !cell_0_2 && game_clk[26]) begin
-				rgb = WHITE;
+				if(sub_board_selected == 1'b1) begin
+					rgb = WHITE; end
+				else begin
+					rgb = BLACK; end
 			end
 			else if(selector_bit == 7 && board_cell_background_1_2 && !cell_1_2 && game_clk[26]) begin
-				rgb = WHITE;
+				if(sub_board_selected == 1'b11) begin
+					rgb = WHITE; end
+				else begin
+					rgb = BLACK; end
 			end
 			else if(selector_bit == 8 && board_cell_background_2_2 && !cell_2_2 && game_clk[26]) begin
-				rgb = WHITE;
+				if(sub_board_selected == 1'b1) begin
+					rgb = WHITE; end
+				else begin
+					rgb = BLACK; end
 			end
 			else if(board[0] == 1'b1 && board_cell_background_0_0 && cell_0_0) begin
 				if(playerA[0])
@@ -272,11 +300,11 @@ module sub_board_controller(
 			playerB <= 9'b000000000;
 			board <= 9'b000000000;
 		end 
-		else if (board_full) begin
-			playerA <= 9'b000000000;
-			playerB <= 9'b000000000;
-			board <= 9'b000000000;
-		end
+		// else if (board_full) begin
+		// 	playerA <= 9'b000000000;
+		// 	playerB <= 9'b000000000;
+		// 	board <= 9'b000000000;
+		// end
 		else if (!board_flash && sub_board_selected) begin
 			if (left) begin
 				if (cursorX > 0) begin
@@ -304,6 +332,7 @@ module sub_board_controller(
 			else if (select) begin
 				if (board[selector_bit] == 1'b0) begin
 					board[selector_bit] <= 1'b1;
+					selector <= selector;
 					if (turn == 1'b0) begin
 						playerA[selector_bit] <= 1'b1;
 					end 
@@ -318,35 +347,24 @@ module sub_board_controller(
 
 	always @(posedge logic_clk, posedge rst) begin
 		if (rst) begin
-			end_game_flash <= 11'b0000_0000_0000;
+			//end_game_flash <= 11'b0000_0000_0000;
 			board_flash <= 1'b0;
 			win <= 3'b000;
 		end 
 		else begin
 			if ((board_full || playerA_win || playerB_win) && !board_flash) begin
 				board_flash <= 1'b1;
-				end_game_flash <= 11'b0000_0000_0000;
+				//end_game_flash <= 11'b0000_0000_0000;
 				if (playerA_win) begin
-					win = 3'b001;
+					win <= 3'b101;
 				end
 				else if (playerB_win) begin
-					win = 3'b010;
+					win <= 3'b110;
 				end
-			end 
-			else if (board_flash) begin
-				if (end_game_flash == end_game_flash_time) begin
-					board_flash <= 1'b0;
-					end_game_flash <= 11'b0000_0000_0000;
-				end 
 				else begin
-					end_game_flash <= end_game_flash + 1'b1;
+					win <= 3'b100;
 				end
-			end 
-			else begin
-				 end_game_flash <= 11'b0000_0000_0000;
 			end
 		end
 	end
-	
-	
 endmodule
