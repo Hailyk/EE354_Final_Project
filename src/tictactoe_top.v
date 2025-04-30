@@ -55,6 +55,8 @@ module tictactoe_top(
 	wire [3:0] PlayerA_Win_Count;
 	wire [3:0] PlayerB_Win_Count;
 	wire [3:0] Player_Tie_Win_Count;
+	wire [8:0] debug;
+	
 	
 	debouncer #(.N_dc(7)) debouncer_U 
         (.CLK(ClkPort), .RESET(Reset), .PB(BtnU), .DPB(), 
@@ -73,7 +75,7 @@ module tictactoe_top(
 		.SCEN(BtnC_pulse), .MCEN(), .CCEN());
 	
 	display_controller dc(.clk(ClkPort), .hSync(hSync), .vSync(vSync), .bright(bright), .hCount(hc), .vCount(vc));
-	board_controller bc(
+	board_controller board_controller(
 		.clk(ClkPort), 
 		.bright(bright), 
 		.rst(Reset), 
@@ -86,15 +88,14 @@ module tictactoe_top(
 		.hCount(hc), 
 		.vCount(vc), 
 		.rgb(rgb), 
-		.background(background), 
 		.selector_bit(selector_bit), 
 		.cursorX(cursorX), 
 		.cursorY(cursorY), 
 		.turn(turn),
-		.board(board),
 		.PlayerA_Win_Count(PlayerA_Win_Count),
 		.PlayerB_Win_Count(PlayerB_Win_Count),
-		.Player_Tie_Win_Count(Player_Tie_Win_Count));
+		.Player_Tie_Win_Count(Player_Tie_Win_Count),
+		.debug(debug));
 
 	
 	assign vgaR = rgb[11 : 8];
@@ -111,14 +112,14 @@ module tictactoe_top(
 	// wire [3:0]	SSD3, SSD2, SSD1, SSD0;
 	
 	//SSDs display 
-	assign SSD7 = turn;
-	assign SSD6 = 4'b0000;
-	assign SSD5 = Player_Tie_Win_Count;
-	assign SSD4 = 4'b0000;
+	assign SSD7 = turn + 1'b1;
+	assign SSD6 = 4'b0;
+	assign SSD5 = PlayerB_Win_Count;
+	assign SSD4 = 4'b0;
 	assign SSD3 = Player_Tie_Win_Count;
-	assign SSD2 = 4'b0000;
+	assign SSD2 = 4'b0;
 	assign SSD1 = PlayerA_Win_Count;
-	assign SSD0 = selector_bit;
+	assign SSD0 = 4'b0;
 
 
 	// need a scan clk for the seven segment display 

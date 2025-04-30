@@ -1,5 +1,5 @@
 namespace eval ::optrace {
-  variable script "C:/Xilinx_project/tictactoe/tictactoe.runs/impl_1/tictactoe_top.tcl"
+  variable script "C:/xilinxproject/EE354_Final_Project/tictactoe.runs/impl_1/tictactoe_top.tcl"
   variable category "vivado_impl"
 }
 
@@ -97,6 +97,8 @@ proc step_failed { step } {
 OPTRACE "impl_1" END { }
 }
 
+set_msg_config -id {Synth 8-256} -limit 10000
+set_msg_config -id {Synth 8-638} -limit 10000
 
 OPTRACE "impl_1" START { ROLLUP_1 }
 OPTRACE "Phase: Init Design" START { ROLLUP_AUTO }
@@ -105,27 +107,28 @@ set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 4
+  set_param checkpoint.writeSynthRtdsInDcp 1
   set_param xicom.use_bs_reader 1
-  set_param runs.launchOptions { -jobs 5  }
+  set_param runs.launchOptions { -jobs 10  }
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7a100tcsg324-1
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir C:/Xilinx_project/tictactoe/tictactoe.cache/wt [current_project]
-  set_property parent.project_path C:/Xilinx_project/tictactoe/tictactoe.xpr [current_project]
-  set_property ip_output_repo C:/Xilinx_project/tictactoe/tictactoe.cache/ip [current_project]
+  set_property webtalk.parent_dir C:/xilinxproject/EE354_Final_Project/tictactoe.cache/wt [current_project]
+  set_property parent.project_path C:/xilinxproject/EE354_Final_Project/tictactoe.xpr [current_project]
+  set_property ip_output_repo C:/xilinxproject/EE354_Final_Project/tictactoe.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES XPM_MEMORY [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet C:/Xilinx_project/tictactoe/tictactoe.runs/synth_1/tictactoe_top.dcp
-  read_ip -quiet C:/Xilinx_project/tictactoe/tictactoe.srcs/sources_1/ip/blk_mem_gen_blue/blk_mem_gen_blue.xci
-  read_ip -quiet C:/Xilinx_project/tictactoe/tictactoe.srcs/sources_1/ip/blk_mem_gen_tie/blk_mem_gen_tie.xci
-  read_ip -quiet C:/Xilinx_project/tictactoe/tictactoe.srcs/sources_1/ip/blk_mem_gen_red/blk_mem_gen_red.xci
+  add_files -quiet C:/xilinxproject/EE354_Final_Project/tictactoe.runs/synth_1/tictactoe_top.dcp
+  read_ip -quiet C:/xilinxproject/EE354_Final_Project/tictactoe.srcs/sources_1/ip/blk_mem_gen_blue/blk_mem_gen_blue.xci
+  read_ip -quiet C:/xilinxproject/EE354_Final_Project/tictactoe.srcs/sources_1/ip/blk_mem_gen_tie/blk_mem_gen_tie.xci
+  read_ip -quiet C:/xilinxproject/EE354_Final_Project/tictactoe.srcs/sources_1/ip/blk_mem_gen_red/blk_mem_gen_red.xci
 OPTRACE "read constraints: implementation" START { }
-  read_xdc C:/Xilinx_project/tictactoe/src/nexys7.xdc
+  read_xdc C:/xilinxproject/EE354_Final_Project/src/nexys7.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "read constraints: implementation_pre" START { }
 OPTRACE "read constraints: implementation_pre" END { }
