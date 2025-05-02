@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.runs/synth_1/tictactoe_top.tcl"
+  variable script "C:/xilinxproject/EE354_Final_Project/tictactoe.runs/synth_1/tictactoe_top.tcl"
   variable category "vivado_synth"
 }
 
@@ -56,6 +56,11 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
+set_param chipscope.maxJobs 4
+set_param checkpoint.writeSynthRtdsInDcp 1
+set_param xicom.use_bs_reader 1
+set_msg_config -id {Synth 8-256} -limit 10000
+set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a100tcsg324-1
 
@@ -63,32 +68,33 @@ set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.cache/wt [current_project]
-set_property parent.project_path C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.xpr [current_project]
+set_property webtalk.parent_dir C:/xilinxproject/EE354_Final_Project/tictactoe.cache/wt [current_project]
+set_property parent.project_path C:/xilinxproject/EE354_Final_Project/tictactoe.xpr [current_project]
 set_property XPM_LIBRARIES XPM_MEMORY [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_output_repo c:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.cache/ip [current_project]
+set_property ip_output_repo c:/xilinxproject/EE354_Final_Project/tictactoe.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-add_files C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/src/blue.coe
-add_files C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/src/red.coe
-add_files C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/src/tie.coe
+add_files C:/xilinxproject/EE354_Final_Project/src/blue.coe
+add_files C:/xilinxproject/EE354_Final_Project/src/red.coe
+add_files C:/xilinxproject/EE354_Final_Project/src/tie.coe
 read_verilog -library xil_defaultlib {
-  C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/src/board_controller.v
-  C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/src/debounce_DPB_SCEN_CCEN_MCEN.v
-  C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/src/display_controller.v
-  C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/src/tictactoe_top.v
+  C:/xilinxproject/EE354_Final_Project/src/board_controller.v
+  C:/xilinxproject/EE354_Final_Project/src/debounce_DPB_SCEN_CCEN_MCEN.v
+  C:/xilinxproject/EE354_Final_Project/src/display_controller.v
+  C:/xilinxproject/EE354_Final_Project/src/sub_board_controller.v
+  C:/xilinxproject/EE354_Final_Project/src/tictactoe_top.v
 }
-read_ip -quiet C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.srcs/sources_1/ip/blk_mem_gen_blue/blk_mem_gen_blue.xci
-set_property used_in_implementation false [get_files -all c:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.gen/sources_1/ip/blk_mem_gen_blue/blk_mem_gen_blue_ooc.xdc]
+read_ip -quiet C:/xilinxproject/EE354_Final_Project/tictactoe.srcs/sources_1/ip/blk_mem_gen_blue/blk_mem_gen_blue.xci
+set_property used_in_implementation false [get_files -all c:/xilinxproject/EE354_Final_Project/tictactoe.gen/sources_1/ip/blk_mem_gen_blue/blk_mem_gen_blue_ooc.xdc]
 
-read_ip -quiet C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.srcs/sources_1/ip/blk_mem_gen_tie/blk_mem_gen_tie.xci
-set_property used_in_implementation false [get_files -all c:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.gen/sources_1/ip/blk_mem_gen_tie/blk_mem_gen_tie_ooc.xdc]
+read_ip -quiet C:/xilinxproject/EE354_Final_Project/tictactoe.srcs/sources_1/ip/blk_mem_gen_tie/blk_mem_gen_tie.xci
+set_property used_in_implementation false [get_files -all c:/xilinxproject/EE354_Final_Project/tictactoe.gen/sources_1/ip/blk_mem_gen_tie/blk_mem_gen_tie_ooc.xdc]
 
-read_ip -quiet C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.srcs/sources_1/ip/blk_mem_gen_red/blk_mem_gen_red.xci
-set_property used_in_implementation false [get_files -all c:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.gen/sources_1/ip/blk_mem_gen_red/blk_mem_gen_red_ooc.xdc]
+read_ip -quiet C:/xilinxproject/EE354_Final_Project/tictactoe.srcs/sources_1/ip/blk_mem_gen_red/blk_mem_gen_red.xci
+set_property used_in_implementation false [get_files -all c:/xilinxproject/EE354_Final_Project/tictactoe.gen/sources_1/ip/blk_mem_gen_red/blk_mem_gen_red_ooc.xdc]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -99,12 +105,12 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/src/nexys7.xdc
-set_property used_in_implementation false [get_files C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/src/nexys7.xdc]
+read_xdc C:/xilinxproject/EE354_Final_Project/src/nexys7.xdc
+set_property used_in_implementation false [get_files C:/xilinxproject/EE354_Final_Project/src/nexys7.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 
-read_checkpoint -auto_incremental -incremental C:/Users/Haily.SKUNKWORK/Downloads/EE354_Final_Project/tictactoe.srcs/utils_1/imports/synth_1/tictactoe_top.dcp
+read_checkpoint -auto_incremental -incremental C:/xilinxproject/EE354_Final_Project/tictactoe.srcs/utils_1/imports/synth_1/tictactoe_top.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

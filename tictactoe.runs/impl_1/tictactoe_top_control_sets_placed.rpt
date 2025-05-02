@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date         : Wed Apr 23 19:43:06 2025
+| Date         : Wed Apr 30 00:25:38 2025
 | Host         : SkunkWork running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file tictactoe_top_control_sets_placed.rpt
 | Design       : tictactoe_top
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    27 |
-|    Minimum number of control sets                        |    27 |
+| Total control sets                                       |    38 |
+|    Minimum number of control sets                        |    38 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |   102 |
+| Unused register locations in slices containing registers |   151 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    27 |
-| >= 0 to < 4        |     4 |
-| >= 4 to < 6        |    13 |
+| Total control sets |    38 |
+| >= 0 to < 4        |     3 |
+| >= 4 to < 6        |    23 |
 | >= 6 to < 8        |     5 |
-| >= 8 to < 10       |     1 |
-| >= 10 to < 12      |     1 |
-| >= 12 to < 14      |     1 |
+| >= 8 to < 10       |     0 |
+| >= 10 to < 12      |     4 |
+| >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     0 |
-| >= 16              |     2 |
+| >= 16              |     3 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,48 +58,59 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               3 |            3 |
-| No           | No                    | Yes                    |              92 |           27 |
-| No           | Yes                   | No                     |              10 |            6 |
-| Yes          | No                    | No                     |              61 |           23 |
-| Yes          | No                    | Yes                    |              24 |           11 |
-| Yes          | Yes                   | No                     |              44 |           16 |
+| No           | No                    | No                     |              12 |           11 |
+| No           | No                    | Yes                    |             341 |          133 |
+| No           | Yes                   | No                     |              37 |           19 |
+| Yes          | No                    | No                     |              46 |           17 |
+| Yes          | No                    | Yes                    |              82 |           36 |
+| Yes          | Yes                   | No                     |              51 |           19 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+----------------------+----------------------------------------------------+------------------------------------------+------------------+----------------+--------------+
-|     Clock Signal     |                    Enable Signal                   |             Set/Reset Signal             | Slice Load Count | Bel Load Count | Bels / Slice |
-+----------------------+----------------------------------------------------+------------------------------------------+------------------+----------------+--------------+
-|  dc/clk              |                                                    |                                          |                1 |              1 |         1.00 |
-|  dc/clk              | dc/hCount[9]_i_1_n_0                               |                                          |                1 |              1 |         1.00 |
-|  dc/pulse            |                                                    |                                          |                1 |              1 |         1.00 |
-|  ClkPort_IBUF_BUFG   |                                                    |                                          |                1 |              1 |         1.00 |
-|  ClkPort_IBUF_BUFG   | debouncer_R/FSM_sequential_state_reg[3]_i_1__1_n_0 | bc/Reset                                 |                2 |              4 |         2.00 |
-|  ClkPort_IBUF_BUFG   | debouncer_R/MCEN_count                             |                                          |                2 |              4 |         2.00 |
-|  ClkPort_IBUF_BUFG   | debouncer_U/FSM_sequential_state_reg[3]_i_1_n_0    | bc/Reset                                 |                2 |              4 |         2.00 |
-|  ClkPort_IBUF_BUFG   | debouncer_U/MCEN_count                             |                                          |                1 |              4 |         4.00 |
-|  ClkPort_IBUF_BUFG   | bc/selector_bit[3]_i_1_n_0                         | bc/Reset                                 |                2 |              4 |         2.00 |
-|  ClkPort_IBUF_BUFG   | debouncer_C/MCEN_count                             |                                          |                1 |              4 |         4.00 |
-|  ClkPort_IBUF_BUFG   | debouncer_C/FSM_sequential_state_reg[3]_i_1__2_n_0 | bc/Reset                                 |                1 |              4 |         4.00 |
-|  ClkPort_IBUF_BUFG   | debouncer_D/FSM_sequential_state_reg[3]_i_1__0_n_0 | bc/Reset                                 |                3 |              4 |         1.33 |
-|  ClkPort_IBUF_BUFG   | debouncer_D/MCEN_count                             |                                          |                2 |              4 |         2.00 |
-|  ClkPort_IBUF_BUFG   | debouncer_L/MCEN_count                             |                                          |                1 |              4 |         4.00 |
-|  ClkPort_IBUF_BUFG   | debouncer_L/FSM_sequential_state[3]_i_1_n_0        | bc/Reset                                 |                1 |              4 |         4.00 |
-|  bc/game_clk_reg[19] | bc/PlayerA_Win_Count[3]_i_1_n_0                    |                                          |                1 |              4 |         4.00 |
-|  bc/game_clk_reg[19] | bc/Player_Tie_Win_Count[3]_i_1_n_0                 |                                          |                1 |              4 |         4.00 |
-|  ClkPort_IBUF_BUFG   | debouncer_L/debounce_count                         | debouncer_L/debounce_count[6]_i_1__1_n_0 |                3 |              7 |         2.33 |
-|  ClkPort_IBUF_BUFG   | debouncer_R/debounce_count                         | debouncer_R/debounce_count[6]_i_1__2_n_0 |                2 |              7 |         3.50 |
-|  ClkPort_IBUF_BUFG   | debouncer_U/debounce_count                         | debouncer_U/debounce_count[6]_i_1__3_n_0 |                2 |              7 |         3.50 |
-|  ClkPort_IBUF_BUFG   | debouncer_C/debounce_count                         | debouncer_C/debounce_count[6]_i_1__0_n_0 |                3 |              7 |         2.33 |
-|  ClkPort_IBUF_BUFG   | debouncer_D/debounce_count                         | debouncer_D/debounce_count[6]_i_1_n_0    |                2 |              7 |         3.50 |
-|  dc/clk              | dc/hCount[9]_i_1_n_0                               | dc/vCount[9]_i_1_n_0                     |                4 |              9 |         2.25 |
-|  dc/clk              |                                                    | dc/hCount[9]_i_1_n_0                     |                6 |             10 |         1.67 |
-|  bc/game_clk_reg[19] |                                                    | bc/Reset                                 |                4 |             13 |         3.25 |
-|  ClkPort_IBUF_BUFG   | dc/ena                                             |                                          |               13 |             32 |         2.46 |
-|  ClkPort_IBUF_BUFG   |                                                    | bc/Reset                                 |               23 |             79 |         3.43 |
-+----------------------+----------------------------------------------------+------------------------------------------+------------------+----------------+--------------+
++------------------------------------+-----------------------------------------------------------+------------------------------------------+------------------+----------------+--------------+
+|            Clock Signal            |                       Enable Signal                       |             Set/Reset Signal             | Slice Load Count | Bel Load Count | Bels / Slice |
++------------------------------------+-----------------------------------------------------------+------------------------------------------+------------------+----------------+--------------+
+|  dc/clk                            |                                                           |                                          |                1 |              1 |         1.00 |
+|  dc/pulse                          |                                                           |                                          |                1 |              1 |         1.00 |
+|  board_controller/game_clk_reg[19] |                                                           | board_controller/Reset                   |                1 |              1 |         1.00 |
+|  ClkPort_IBUF_BUFG                 | board_controller/sub_board_0_2/selector_bit[3]_i_1__2_n_0 | board_controller/sub_board_0_0/AR[0]     |                2 |              4 |         2.00 |
+|  ClkPort_IBUF_BUFG                 | board_controller/sub_board_2_2/selector_bit[3]_i_1__0_n_0 | board_controller/sub_board_0_0/AR[0]     |                3 |              4 |         1.33 |
+|  ClkPort_IBUF_BUFG                 | board_controller/sub_board_0_1/selector_bit[3]_i_1__5_n_0 | board_controller/sub_board_0_0/AR[0]     |                4 |              4 |         1.00 |
+|  ClkPort_IBUF_BUFG                 | board_controller/sub_board_2_1/selector_bit[3]_i_1__3_n_0 | board_controller/sub_board_0_0/AR[0]     |                2 |              4 |         2.00 |
+|  ClkPort_IBUF_BUFG                 | board_controller/sub_board_0_0/selector_bit[3]_i_1_n_0    | board_controller/sub_board_0_0/AR[0]     |                2 |              4 |         2.00 |
+|  board_controller/game_clk_reg[19] | board_controller/sub_board_1_1/E[0]                       | board_controller/Reset                   |                1 |              4 |         4.00 |
+|  ClkPort_IBUF_BUFG                 | board_controller/sel                                      | board_controller/Reset                   |                1 |              4 |         4.00 |
+|  ClkPort_IBUF_BUFG                 | debouncer_C/MCEN_count                                    | debouncer_C/MCEN_count[3]_i_1_n_0        |                1 |              4 |         4.00 |
+|  board_controller/game_clk_reg[19] | board_controller/sub_board_1_1/win_reg_0[0]               | board_controller/Reset                   |                1 |              4 |         4.00 |
+|  ClkPort_IBUF_BUFG                 | debouncer_C/FSM_sequential_state_reg[3]_i_1__1_n_0        | board_controller/Reset                   |                2 |              4 |         2.00 |
+|  ClkPort_IBUF_BUFG                 | debouncer_D/MCEN_count                                    | debouncer_D/MCEN_count[3]_i_1_n_0        |                1 |              4 |         4.00 |
+|  ClkPort_IBUF_BUFG                 | debouncer_D/FSM_sequential_state_reg[3]_i_1__0_n_0        | board_controller/Reset                   |                2 |              4 |         2.00 |
+|  board_controller/game_clk_reg[19] | board_controller/sub_board_1_1/win_reg[0]                 | board_controller/Reset                   |                1 |              4 |         4.00 |
+|  ClkPort_IBUF_BUFG                 | debouncer_L/MCEN_count                                    | debouncer_L/MCEN_count[3]_i_1_n_0        |                1 |              4 |         4.00 |
+|  ClkPort_IBUF_BUFG                 | debouncer_L/FSM_sequential_state[3]_i_1_n_0               | board_controller/Reset                   |                1 |              4 |         4.00 |
+|  ClkPort_IBUF_BUFG                 | debouncer_R/FSM_sequential_state[3]_i_1__0_n_0            | board_controller/Reset                   |                2 |              4 |         2.00 |
+|  ClkPort_IBUF_BUFG                 | debouncer_R/MCEN_count                                    | debouncer_R/MCEN_count[3]_i_1_n_0        |                1 |              4 |         4.00 |
+|  ClkPort_IBUF_BUFG                 | debouncer_U/FSM_sequential_state_reg[3]_i_1_n_0           | board_controller/Reset                   |                1 |              4 |         4.00 |
+|  ClkPort_IBUF_BUFG                 | debouncer_U/MCEN_count                                    | debouncer_U/MCEN_count[3]_i_1_n_0        |                1 |              4 |         4.00 |
+|  ClkPort_IBUF_BUFG                 | board_controller/sub_board_1_0/selector_bit[3]_i_1__7_n_0 | board_controller/sub_board_0_0/AR[0]     |                2 |              4 |         2.00 |
+|  ClkPort_IBUF_BUFG                 | board_controller/sub_board_1_1/selector_bit[3]_i_1__4_n_0 | board_controller/sub_board_0_0/AR[0]     |                1 |              4 |         4.00 |
+|  ClkPort_IBUF_BUFG                 | board_controller/sub_board_1_2/selector_bit[3]_i_1__1_n_0 | board_controller/sub_board_0_0/AR[0]     |                2 |              4 |         2.00 |
+|  ClkPort_IBUF_BUFG                 | board_controller/sub_board_2_0/selector_bit[3]_i_1__6_n_0 | board_controller/sub_board_0_0/AR[0]     |                3 |              4 |         1.33 |
+|  ClkPort_IBUF_BUFG                 | debouncer_C/debounce_count                                | debouncer_C/debounce_count[6]_i_1__3_n_0 |                3 |              7 |         2.33 |
+|  ClkPort_IBUF_BUFG                 | debouncer_D/debounce_count                                | debouncer_D/debounce_count[6]_i_1__2_n_0 |                2 |              7 |         3.50 |
+|  ClkPort_IBUF_BUFG                 | debouncer_R/debounce_count                                |                                          |                2 |              7 |         3.50 |
+|  ClkPort_IBUF_BUFG                 | debouncer_U/debounce_count                                | debouncer_U/debounce_count[6]_i_1__1_n_0 |                3 |              7 |         2.33 |
+|  ClkPort_IBUF_BUFG                 | debouncer_L/debounce_count                                |                                          |                2 |              7 |         3.50 |
+|  dc/clk                            |                                                           | dc/hCount[9]_i_1_n_0                     |                6 |             10 |         1.67 |
+|  dc/clk                            | dc/hCount[9]_i_1_n_0                                      | dc/vCount[9]_i_1_n_0                     |                6 |             10 |         1.67 |
+|  ClkPort_IBUF_BUFG                 |                                                           |                                          |                9 |             10 |         1.11 |
+|  board_controller/game_clk_reg[19] | board_controller/sub_board_1_1/win_reg_2[0]               | board_controller/Reset                   |                3 |             10 |         3.33 |
+|  ClkPort_IBUF_BUFG                 | dc/ena                                                    |                                          |               13 |             32 |         2.46 |
+|  ClkPort_IBUF_BUFG                 |                                                           | board_controller/Reset                   |               18 |             61 |         3.39 |
+|  ClkPort_IBUF_BUFG                 |                                                           | board_controller/sub_board_0_0/AR[0]     |              127 |            306 |         2.41 |
++------------------------------------+-----------------------------------------------------------+------------------------------------------+------------------+----------------+--------------+
 
 

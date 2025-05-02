@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date             : Wed Apr 23 19:44:04 2025
+| Date             : Wed Apr 30 00:26:39 2025
 | Host             : SkunkWork running 64-bit major release  (build 9200)
 | Command          : report_power -file tictactoe_top_power_routed.rpt -pb tictactoe_top_power_summary_routed.pb -rpx tictactoe_top_power_routed.rpx
 | Design           : tictactoe_top
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.124        |
+| Total On-Chip Power (W)  | 0.126        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.025        |
+| Dynamic (W)              | 0.027        |
 | Device Static (W)        | 0.099        |
 | Effective TJA (C/W)      | 4.6          |
 | Max Ambient (C)          | 84.4         |
@@ -52,18 +52,18 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.004 |        3 |       --- |             --- |
-| Slice Logic    |     0.002 |      959 |       --- |             --- |
-|   LUT as Logic |     0.001 |      469 |     63400 |            0.74 |
-|   Register     |    <0.001 |      234 |    126800 |            0.18 |
-|   CARRY4       |    <0.001 |       29 |     15850 |            0.18 |
-|   F7/F8 Muxes  |    <0.001 |        4 |     63400 |           <0.01 |
-|   Others       |     0.000 |       92 |       --- |             --- |
-| Signals        |     0.003 |      978 |       --- |             --- |
+| Clocks         |     0.006 |        3 |       --- |             --- |
+| Slice Logic    |     0.003 |     2705 |       --- |             --- |
+|   LUT as Logic |     0.003 |     1560 |     63400 |            2.46 |
+|   Register     |    <0.001 |      569 |    126800 |            0.45 |
+|   CARRY4       |    <0.001 |       26 |     15850 |            0.16 |
+|   F7/F8 Muxes  |    <0.001 |        3 |     63400 |           <0.01 |
+|   Others       |     0.000 |      107 |       --- |             --- |
+| Signals        |     0.004 |     2364 |       --- |             --- |
 | Block RAM      |     0.002 |       39 |       135 |           28.89 |
-| I/O            |     0.014 |       37 |       210 |           17.62 |
+| I/O            |     0.011 |       37 |       210 |           17.62 |
 | Static Power   |     0.099 |          |           |                 |
-| Total          |     0.124 |          |           |                 |
+| Total          |     0.126 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -73,9 +73,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.027 |       0.011 |      0.016 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.019 |       0.001 |      0.018 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.008 |       0.004 |      0.004 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.032 |       0.016 |      0.016 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.019 |       0.000 |      0.018 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.007 |       0.003 |      0.004 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -142,14 +142,11 @@ Table of Contents
 +--------------------+-----------+
 | Name               | Power (W) |
 +--------------------+-----------+
-| tictactoe_top      |     0.025 |
-|   bc               |     0.007 |
+| tictactoe_top      |     0.027 |
+|   board_controller |     0.010 |
 |     blue_bram_inst |     0.001 |
 |       U0           |     0.001 |
-|     red_bram_inst  |     0.001 |
-|       U0           |     0.001 |
-|     tie_bram_inst  |     0.001 |
-|       U0           |     0.001 |
+|   dc               |     0.003 |
 +--------------------+-----------+
 
 
